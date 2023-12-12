@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class FishInventorySystem {
+
+    public static void main(String[] args) {
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        // Boat details
+        System.out.print("Enter boat name: ");
+        String boatName = scanner.nextLine();
+        
+        System.out.print("Enter boat max capacity (kg): ");
+        int maxCapacity = scanner.nextInt();
+        
+        // Initialize totals 
+        int totalFish = 0;
+        double totalCost = 0;
+        
+        // Get number of fish types
+        System.out.print("Enter number of fish types: ");
+        int numFishTypes = scanner.nextInt();
+        
+        // Input details for each fish
+        for (int i = 1; i <= numFishTypes; i++) {
+            
+            System.out.print("Enter type " + i + " name: ");
+            String fishType = scanner.next();
+          
+            System.out.print("Enter number of " + fishType + ": ");
+            int fishQty = scanner.nextInt();
+
+            System.out.print("Enter average weight for " + fishType + "(kg)): ");
+            double avgWeight = scanner.nextDouble();
+            
+            double totalWeight = fishQty * avgWeight;
+            
+            System.out.print("Enter cost per " + fishType + ": ");
+            double fishPrice = scanner.nextDouble();
+
+            totalFish += fishQty;
+            totalCost += fishQty * fishPrice;
+            
+            System.out.println(fishType + " total weight: " + totalWeight + " kg");
+        }
+
+        double usageRatio = (totalWeight / maxCapacity) * 100;
+        
+        // Print report
+        System.out.println("\nInventory Report - " + boatName);
+        System.out.println("---------------------------------");
+        System.out.println("Total Fish: " + totalFish);
+        System.out.println("Total Weight: " + totalWeight + " kg");
+        System.out.println("Total Cost: " + totalCost); 
+        System.out.println("Boat Capacity Usage: " + usageRatio + "%");
+        
+        scanner.close();
+    }
+
+}
